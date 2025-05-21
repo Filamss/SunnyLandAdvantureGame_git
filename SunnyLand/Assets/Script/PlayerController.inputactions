@@ -7,7 +7,7 @@
             "actions": [
                 {
                     "name": "Move",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "74a43e5f-b20f-498b-b851-9edf8a84c14f",
                     "expectedControlType": "Vector2",
                     "processors": "",
@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Croach",
+                    "name": "Crouch",
                     "type": "Button",
                     "id": "bba05f84-e6ce-45bf-b4a2-c2645559effe",
                     "expectedControlType": "Button",
@@ -107,7 +107,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Croach",
+                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

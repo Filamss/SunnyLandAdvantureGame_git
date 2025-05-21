@@ -29,7 +29,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Move"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Value"",
                     ""id"": ""74a43e5f-b20f-498b-b851-9edf8a84c14f"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
@@ -46,7 +46,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Croach"",
+                    ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""bba05f84-e6ce-45bf-b4a2-c2645559effe"",
                     ""expectedControlType"": ""Button"",
@@ -129,7 +129,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Croach"",
+                    ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -142,7 +142,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
-        m_Movement_Croach = m_Movement.FindAction("Croach", throwIfNotFound: true);
+        m_Movement_Crouch = m_Movement.FindAction("Crouch", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -206,14 +206,14 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
     private readonly InputAction m_Movement_Move;
     private readonly InputAction m_Movement_Jump;
-    private readonly InputAction m_Movement_Croach;
+    private readonly InputAction m_Movement_Crouch;
     public struct MovementActions
     {
         private @PlayerController m_Wrapper;
         public MovementActions(@PlayerController wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Movement_Move;
         public InputAction @Jump => m_Wrapper.m_Movement_Jump;
-        public InputAction @Croach => m_Wrapper.m_Movement_Croach;
+        public InputAction @Crouch => m_Wrapper.m_Movement_Crouch;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -229,9 +229,9 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @Croach.started += instance.OnCroach;
-            @Croach.performed += instance.OnCroach;
-            @Croach.canceled += instance.OnCroach;
+            @Crouch.started += instance.OnCrouch;
+            @Crouch.performed += instance.OnCrouch;
+            @Crouch.canceled += instance.OnCrouch;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -242,9 +242,9 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @Croach.started -= instance.OnCroach;
-            @Croach.performed -= instance.OnCroach;
-            @Croach.canceled -= instance.OnCroach;
+            @Crouch.started -= instance.OnCrouch;
+            @Crouch.performed -= instance.OnCrouch;
+            @Crouch.canceled -= instance.OnCrouch;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -266,6 +266,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnCroach(InputAction.CallbackContext context);
+        void OnCrouch(InputAction.CallbackContext context);
     }
 }
